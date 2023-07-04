@@ -11,11 +11,11 @@ npm install react-native-signature-id-of-android
 ## Usage
 
 ```js
-import { multiply } from 'react-native-signature-id-of-android';
+import { getSignatureIdAsync } from 'react-native-signature-id-of-android';
 
 // ...
 
-const result = await multiply(3, 7);
+const result = await getSignatureIdAsync();
 ```
 
 ## Contributing

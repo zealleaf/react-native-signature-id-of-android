@@ -1,13 +1,13 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-signature-id-of-android';
+import { getSignatureIdAsync } from 'react-native-signature-id-of-android';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [result, setResult] = React.useState<string | undefined>();
 
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+    getSignatureIdAsync().then(setResult);
   }, []);
 
   return (

@@ -1,8 +1,7 @@
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules } from 'react-native';
 
 const LINKING_ERROR =
   `The package 'react-native-signature-id-of-android' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo Go\n';
 
@@ -17,6 +16,6 @@ const SignatureIdOfAndroid = NativeModules.SignatureIdOfAndroid
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return SignatureIdOfAndroid.multiply(a, b);
+export function getSignatureIdAsync(): Promise<string> {
+  return SignatureIdOfAndroid.getSignatureIdAsync();
 }

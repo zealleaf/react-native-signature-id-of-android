@@ -1,5 +1,11 @@
 package com.signatureidofandroid
 
+import java.security.MessageDigest
+
+import android.content.pm.PackageManager
+import android.content.pm.Signature
+import android.util.Base64
+
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
@@ -12,11 +18,23 @@ class SignatureIdOfAndroidModule(reactContext: ReactApplicationContext) :
     return NAME
   }
 
-  // Example method
-  // See https://reactnative.dev/docs/native-modules-android
   @ReactMethod
-  fun multiply(a: Double, b: Double, promise: Promise) {
-    promise.resolve(a * b)
+  fun getSignatureIdAsync(promise: Promise) {
+      try {
+          val packageName = reactApplicationContext.packageName
+          val packageManager = reactApplicationContext.packageManager
+          val packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+          val signatures = packageInfo.signatures
+          val signature = signatures[0]
+
+          val messageDigest = MessageDigest.getInstance("SHA-256")
+          val digest = messageDigest.digest(signature.toByteArray())
+          val signatureId = Base64.encodeToString(digest, Base64.DEFAULT)
+
+          promise.resolve(signatureId)
+      } catch (e: Exception) {
+          promise.reject("ERROR", e.message)
+      }
   }
 
   companion object {
