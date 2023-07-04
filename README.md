@@ -1,6 +1,6 @@
 # react-native-signature-id-of-android
 
-Get the signature ID of Android
+Get the signature ID of Android in React Native
 
 ## Installation
 

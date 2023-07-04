@@ -1,7 +1,7 @@
 {
   "name": "react-native-signature-id-of-android",
   "version": "0.1.0",
-  "description": "Get the signature ID of Android",
+  "description": "Get the signature ID of Android in React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
